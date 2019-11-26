@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import db from './store/db'
 
 function App() {
+  
+  useEffect(() => {
+
+    db.wallet.put({
+      name:"ETH 錢包", 
+      coinId:"ETH", 
+      address:"0xd9538901149f47890C334218Ae741e665B0AF396"
+    })
+
+    //db.wallet.where("coinId").anyOf("ETH").delete();
+
+    db.wallet.toArray((wallets)=>{
+      console.log( wallets ) 
+    })
+  });
+
   return (
     <div className="App">
       <header className="App-header">
